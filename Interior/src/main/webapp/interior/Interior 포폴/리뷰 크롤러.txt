@@ -1,0 +1,84 @@
+from bs4 import BeautifulSoup
+from urllib.request import urlopen
+from urllib.parse import urljoin
+import urllib.request as req
+import re
+import pandas as pd
+from selenium import webdriver
+import time
+from tqdm import tqdm_notebook
+import pymongo
+from konlpy.tag import Twitter
+connection = pymongo.MongoClient('192.168.100.79', 27017)
+twitter = Twitter()
+category_review_db = connection.get_database('category_review_db')
+category_url = category_review_db.get_collection('category_review_url')
+category_review = category_review_db.get_collection('category_review')
+docs = category_url.find({}, {'_id':0})
+doc_list = []
+for doc in docs:
+    doc_list.append(doc)
+paging_list1 = []
+for n in range(1,11):
+    paging_list1.append('''//*[@id="_review_paging"]/a[''' + repr(n) + ']')
+paging_list2 = []
+for n in range(3,13):
+    paging_list2.append('''//*[@id="_review_paging"]/a[''' + repr(n) + ']')
+
+options = webdriver.ChromeOptions()
+options.add_argument('headless')
+options.add_argument('window-size=1920x1080')
+options.add_argument("disable-gpu")    
+for n in tqdm_notebook(range(12000, 14000)):
+    try:
+        driver = webdriver.Chrome('./driver/chromedriver', chrome_options = options)
+        driver.get(doc_list[n]['url'])
+        time.sleep(2)       
+        for temp3 in tqdm_notebook(paging_list1):
+            try:
+                html = driver.page_source
+                soup = BeautifulSoup(html, 'html.parser')
+                review_first = soup.select ('.lst_review > li > .atc_area > .atc')                       
+                score_first = soup.select ('.lst_review > li > .atc_area > .avg_area > a > .curr_avg > strong')
+                review_dict_first = {}
+                review_list_first = []
+                for w in range(0, len(review_first)):
+                    review_dict_first = {'category' : doc_list[n]['category'], 'review' : review_first[w].text, 'score' : score_first[w].text} 
+                    review_list_first.append(review_dict_first)
+                category_review.insert(review_list_first)
+                driver.find_element_by_xpath(temp3).click() 
+                time.sleep(2)
+            except:
+                print("예외발생")
+        driver.find_element_by_xpath('''//*[@id="_review_paging"]/a[1]''').click()
+        time.sleep(2)                   
+        driver.find_element_by_xpath('''//*[@id="_review_paging"]/a[11]''').click()
+        time.sleep(2)
+        html = driver.page_source
+        soup = BeautifulSoup(html, 'html.parser')
+        page_end_test = soup.select('.co_paginate')
+        page_end_index_test = page_end_test[1].find('strong').text.replace('\n','').split()
+        page_end_index_num_test = page_end_index_test[-1:][0]
+        page_total = int(int(page_end_index_num_test)/10)
+        driver.find_element_by_xpath('''//*[@id="_review_paging"]/a[1]''').click()
+        time.sleep(2)           
+        for index in tqdm_notebook(range(1, page_total)):
+            for temp4 in tqdm_notebook(paging_list2):
+                try:
+                    html = driver.page_source
+                    soup = BeautifulSoup(html, 'html.parser')
+                    review_second = soup.select ('.lst_review > li > .atc_area > .atc')    
+                    score_second = soup.select ('.lst_review > li > .atc_area > .avg_area > a > .curr_avg > strong')
+                    review_dict_second = {}
+                    review_list_second = []
+                    for m in range(0, len(review_second)):
+                        review_dict_second = {'category' : doc_list[n]['category'], 'review' : review_second[m].text, 'score' : score_second[m].text} 
+                        review_list_second.append(review_dict_second)
+                    category_review.insert(review_list_second)
+                    driver.find_element_by_xpath(temp4).click()
+                    time.sleep(2)
+                except:
+                    print("예외발생")
+        driver.close()
+    except:
+        print('예외발생')
