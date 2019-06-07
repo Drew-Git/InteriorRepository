@@ -1,3 +1,6 @@
+InteriorRepository/Interior/src/main/webapp/interior/
+에 있는 알집 interior.zip
+
 저장위치 C:\db_5ts\
 1) 저장위치에 interior.zip 압축 풀기
 2) mysql로 importDB_5ts.sql 실행
