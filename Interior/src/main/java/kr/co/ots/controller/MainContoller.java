@@ -50,7 +50,7 @@ public class MainContoller {
 	public void mainView(HttpServletResponse response, String blog_img) {
 		System.out.println("메인 페이지 : " + blog_img );
 		try {
-			String path = "D:\\bigdata\\spring-workspace\\SP_SJK\\Interior\\src\\main\\webapp\\interior\\data\\img_file\\";
+			String path = "C:\\db_5ts\\interior\\data\\img_file\\";
 			File file = new File( path + blog_img);
 			FileInputStream in = new FileInputStream(file);
 			BufferedInputStream bis = new BufferedInputStream(in);
@@ -77,7 +77,7 @@ public class MainContoller {
 			String main_image) {
 
 		try {
-			String path = "D:\\bigdata\\spring-workspace\\SP_SJK\\Interior\\src\\main\\webapp\\interior\\data\\cafe_image\\";
+			String path = "C:\\db_5ts\\interior\\data\\cafe_image\\";
 			File file = new File(path + main_image);
 			FileInputStream in = new FileInputStream(file);
 			BufferedInputStream bis = new BufferedInputStream(in);

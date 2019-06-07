@@ -59,7 +59,7 @@ public class MatchController {
       
       MultipartFile mf = request.getFile("file");
       
-      String path = "D:\\bigdata\\spring-workspace\\SP_SJK\\Interior\\src\\main\\webapp\\interior\\data\\furniture\\";
+      String path = "C:\\db_5ts\\interior\\data\\furniture\\";
 
 
       File saveDirectory = new File(path);
@@ -125,7 +125,7 @@ public class MatchController {
    
    @RequestMapping(value = "/showing_interior")
    public @ResponseBody void showing_interior(HttpServletResponse response, String FileName) {
-	  String path = "D:\\bigdata\\spring-workspace\\SP_SJK\\Interior\\src\\main\\webapp\\interior\\data\\interiorIMG\\";
+	  String path = "C:\\db_5ts\\interior\\data\\interiorIMG\\";
       
       File file = new File(path + FileName);
       try {
@@ -171,7 +171,7 @@ public class MatchController {
    
    @RequestMapping(value = "/showing_furniture")
    public @ResponseBody void showing_furniture(HttpServletResponse response, String FileName) {
-	  String path = "D:\\bigdata\\spring-workspace\\SP_SJK\\Interior\\src\\main\\webapp\\interior\\data\\furniture\\";
+	  String path = "C:\\db_5ts\\interior\\data\\furniture\\";
       
 	  File file = new File(path + FileName);
       try {

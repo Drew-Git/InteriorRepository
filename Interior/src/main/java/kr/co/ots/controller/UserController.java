@@ -85,7 +85,7 @@ public class UserController {
 
 		System.out.println(joinDTO.toString());
 		MultipartFile mf = req.getFile("file");
-		String path = "D:\\bigdata\\spring-workspace\\SP_SJK\\Interior\\src\\main\\webapp\\interior\\data\\profile\\";
+		String path = "C:\\db_5ts\\interior\\data\\profile\\";
 		
 		File saveDir = new File(path);
 
@@ -118,7 +118,7 @@ public class UserController {
 	public void profile(HttpServletResponse response, String img) {
 
 		try {
-			String path = "D:\\bigdata\\spring-workspace\\SP_SJK\\Interior\\src\\main\\webapp\\interior\\data\\profile\\";
+			String path = "C:\\db_5ts\\interior\\data\\profile\\";
 			File file = new File(path + img);
 			FileInputStream in = new FileInputStream(file);
 			BufferedInputStream bis = new BufferedInputStream(in);
@@ -157,7 +157,7 @@ public class UserController {
 	public String modUser(Model model, UserModifyDTO userModifyDTO, MultipartHttpServletRequest req) {
 		MultipartFile mf = req.getFile("file");
 
-		String path = "D:\\bigdata\\spring-workspace\\SP_SJK\\Interior\\src\\main\\webapp\\interior\\data\\profile\\";
+		String path = "C:\\db_5ts\\interior\\data\\profile\\";
 		File saveDir = new File(path);
 
 		if (!saveDir.exists()) {

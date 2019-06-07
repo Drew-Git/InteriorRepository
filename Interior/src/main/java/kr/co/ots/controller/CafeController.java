@@ -82,7 +82,7 @@ public class CafeController {
 			String title_image) {
 
 		try { 
-			String path = "D:\\bigdata\\spring-workspace\\SP_SJK\\Interior\\src\\main\\webapp\\interior\\data\\cafe_image\\";
+			String path = "C:\\db_5ts\\interior\\data\\cafe_image\\";
 			File file = new File( path  + title_image);
 			FileInputStream in = new FileInputStream(file);
 			BufferedInputStream bis = new BufferedInputStream(in);
@@ -110,7 +110,7 @@ public class CafeController {
 			String main_image) {
 
 		try {
-			String path = "D:\\bigdata\\spring-workspace\\SP_SJK\\Interior\\src\\main\\webapp\\interior\\data\\cafe_image\\";
+			String path = "C:\\db_5ts\\interior\\data\\cafe_image\\";
 			File file = new File(path + main_image);
 			FileInputStream in = new FileInputStream(file);
 			BufferedInputStream bis = new BufferedInputStream(in);
@@ -138,7 +138,7 @@ public class CafeController {
 			String cafe_image) {
 
 		try {
-			String path = "D:\\bigdata\\spring-workspace\\SP_SJK\\Interior\\src\\main\\webapp\\interior\\data\\cafe_image\\";
+			String path = "C:\\db_5ts\\interior\\data\\cafe_image\\";
 			
 			File file = new File(path + cafe_image);
 			FileInputStream in = new FileInputStream(file);
@@ -167,7 +167,7 @@ public class CafeController {
 			CafeCommentDTO cafeCommentDTO, Model model) {
 		try {
 			MultipartFile mf = request.getFile("file");
-			String path = "D:\\bigdata\\spring-workspace\\SP_SJK\\Interior\\src\\main\\webapp\\interior\\data\\cafe_image\\";
+			String path = "C:\\db_5ts\\interior\\data\\cafe_image\\";
 			
 			File saveDir = new File(path);
 			if (!saveDir.exists()) {
@@ -219,7 +219,7 @@ public class CafeController {
 	@RequestMapping(value="/getCommentImage", method = RequestMethod.GET)
 	public @ResponseBody void getCommentImage(HttpServletResponse response, HttpServletRequest request, String image) {
 		try {
-			String path = "D:\\bigdata\\spring-workspace\\SP_SJK\\Interior\\src\\main\\webapp\\interior\\data\\cafe_image\\";
+			String path = "C:\\db_5ts\\interior\\data\\cafe_image\\";
 			File file = new File(path + image );
 			FileInputStream in = new FileInputStream(file);
 			BufferedInputStream bis = new BufferedInputStream(in);
