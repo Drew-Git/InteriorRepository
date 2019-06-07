@@ -145,6 +145,6 @@ def hello_world():
     return "Hello World!"
 
 if __name__ == '__main__' :
-    svmlabel2 = joblib.load('./data/svmlabel2.pkl')
+    svmlabel2 = joblib.load('./C:/db_5ts/interior/data/svmlabel2.pkl')
 
 app.run()
