@@ -6,3 +6,7 @@ InteriorRepository/Interior/src/main/webapp/interior/
 2) mysql로 importDB_5ts.sql 실행
 3) pycham으로 interior.py 실행
 
+스프링 실행 후
+1) url창에 http://localhost:8080/ots/main/page 입력
+2) 메인 페이지화면에서 상단 우측 메뉴 버튼으로 회원가입
+3) 회원가입 후 자신의 인테리어 블로그를 남기면 됩니다.
